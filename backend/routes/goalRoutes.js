@@ -1,21 +1,10 @@
 import express from 'express'
+import { getGoals, postGoals, putGoals, deleteGoals } from '../controller/goalController.js';
 
-const router=express.Router();
+const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.json({ message: "Get Request" })
-})
+router.route("/").get(getGoals).post(postGoals)
 
-router.post("/", (req, res) => {
-    res.json({ message: "Post Request" })
-})
-
-router.put("/:id", (req, res) => {
-    res.json({ message: `Update Request:${req.params.id}` })
-})
-
-router.delete("/:id", (req, res) => {
-    res.json({ message: `Delete Request:${req.params.id}` })
-})
+router.route("/:id").put(putGoals).delete(deleteGoals)
 
 export default router
